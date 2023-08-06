@@ -1,0 +1,52 @@
+﻿<Window x:Class="SharpPad.Preferences.Views.PreferencesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Preferences" 
+        Height="546.5" Width="550"
+        Style="{DynamicResource CustomToolWindowStyle}" FontFamily="Consolas" Foreground="{DynamicResource ControlDefaultForeground}">
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding SavePreferencesCommand, Mode=OneTime}"/>
+        <KeyBinding Key="Esc" Command="{Binding CancelCommand, Mode=OneTime}"/>
+    </Window.InputBindings>
+    <Grid Margin="5">
+        <ScrollViewer Margin="0,0,0,34">
+            <StackPanel IsEnabled="True">
+                <Label Content="Window Preferences"/>
+                <CheckBox Content="Close windows with Ctrl + W (shutdown all windows with Ctrl + Shift + W)" IsChecked="{Binding CanCloseWindowsWithCtrlWAndShift, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Ctrl + Shift + T to reopen the last recently closed window with" IsChecked="{Binding CanReopenWindowWithCtrlShiftT, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Use new DragDropping (to autodetect where you dropped the file)" 
+                          ToolTip="When you dragdrop items a few file watchers will be made to look for where you dropped the file, and it will set your file's path as this. but it will only do this if the path DOES NOT exist. normal dropping (create same item in temp and copy to location) is used if the file exists or this option is disabled." 
+                          IsChecked="{Binding UseNewDragDropSystem, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Separator/>
+                <Label Content="Text Editor Preferences"/>
+
+                <CheckBox Content="Scroll vertically with Ctrl + Up/Down Arrow Keys"                         IsChecked="{Binding ScrollVerticallyCtrlArrowKeys, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Scroll horizontally with Ctrl + Left/Right Arrow Keys (not recommended)"  IsChecked="{Binding ScrollHorizontallyCtrlArrowKeys, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Scroll horizontally with Shift + Mouse Wheel"                             IsChecked="{Binding ScrollHorizontallyShiftMouseWheel, UpdateSourceTrigger=PropertyChanged}"/>
+                <Separator/>
+                <TextBlock><Run Text="(Using"/><Run Text=" the 4"/><Run Text=" "/><Run Text="functions "/><Run Text="below when using Text Wrapping "/><Run Text="is a "/><Run Text="bit "/><Run Text="bug"/><Run Text="gy"/><Run Text=")"/></TextBlock>
+                <CheckBox Content="Ctrl + X to cut an entire line (when no text selected)"                   IsChecked="{Binding CutEntireLineCtrlX, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Ctrl + C to copy an entire line (when no text selected)"                  IsChecked="{Binding CopyEntireLineCtrlC, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Ctrl + Shift + A to select an entire line"                                IsChecked="{Binding SelectEntireLineCtrlShiftA, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Ctrl + Enter to add an empty line below current one"                      IsChecked="{Binding AddEntireLineCtrlEnter, UpdateSourceTrigger=PropertyChanged}"/>
+                <Separator/>
+                <CheckBox Content="Ctrl + Mouse Wheel Up/Down to increase/decrease Font size (aka Zoom in/out)" IsChecked="{Binding ZoomEditorCtrlScrollwheel, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Use Text Wrapping by default (when opening new notepads)"                    IsChecked="{Binding WrapTextByDefault, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Use word counter by default (laggy with LOTS of text... 50kb+)"           IsChecked="{Binding UseWordCounterByDefault, UpdateSourceTrigger=PropertyChanged}"/>
+                <CheckBox Content="Auto-rename file name if it's different to the path file name"            IsChecked="{Binding CheckFileNamesForChangesInDocumentWatcher, UpdateSourceTrigger=PropertyChanged}" ToolTip="The Document watcher (which watches for file content changes) will auto-rename the file name if it doesn't match the filename of the path, e.g. if you copy-paste a new path into the notepad's path"/>
+                <Separator/>
+                <Label Content="Other Preferences"/>
+                <CheckBox Content="Save/Open unclosed files to a temporary location (in MyDocuments)"           IsChecked="{Binding SaveOpenUnclosedFiles, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock><Run Text=" - if you close the app with items still "/><Run Text="open"/><Run Text=", this will save them to a"/><Run Text=" temp"/><LineBreak/><Run Text="   "/><Run Text="folder (in MyDocuments). And when you reopen the app it will open them."/></TextBlock>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Command="{Binding RefreshCommand, Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Refresh" Height="24" Width="65"/>
+        <Button VerticalAlignment="Bottom"  HorizontalAlignment="Left" Content="Set Recommended" Margin="70,0,0,0" Height="24" Width="120" ToolTip="Set preferences to the recommended values" Click="Button_Click"/>
+        <Button Command="{Binding SavePreferencesCommand, Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="OK" Margin="0,0,70,0" Height="24" Width="65"/>
+        <Button Command="{Binding CancelCommand, Mode=OneTime}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Cancel" Height="24" Width="65"/>
+    </Grid>
+</Window>

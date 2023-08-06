@@ -1,0 +1,88 @@
+﻿<Window x:Class="SharpPad.Applications.WindowManagerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SharpPad.Applications" 
+        xmlns:controls="clr-namespace:SharpPad.Applications.Controls" 
+        xmlns:history="clr-namespace:SharpPad.Applications.History"
+        mc:Ignorable="d"
+        Title="Window Manager" 
+        MinHeight="320"
+        MinWidth ="600" 
+        Height="400"
+        Width="750"
+        Closing="Window_Closing"
+        Topmost="True"
+        Icon="/SharpPad;component/Resources/previewWindow.png"
+        Style="{DynamicResource CustomToolWindowStyle}">
+    <Grid Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Margin="0,0,2,0">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Active Windows: "/>
+                    <TextBlock Text="{Binding WindowPreviews.Count, UpdateSourceTrigger=PropertyChanged}" Margin="2 0 0 0"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <ListBox ItemsSource="{Binding WindowPreviews, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Stretch" Margin="0,0,0,39"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.CanContentScroll="False">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <controls:WindowPreviewControl DataContext="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button VerticalAlignment="Bottom" 
+                    Command="{Binding ShutdownApplicationCommand, Mode=OneTime}"
+                    Content="Close all windows (shutdown app)" Height="39" 
+                    BorderBrush="{DynamicResource ControlBrightDefaultBorderBrush}"
+                    BorderThickness="1 0 1 1"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Margin="2,0,0,0">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Closed Windows: "/>
+                    <TextBlock Text="{Binding History.HistoryItems.Count, UpdateSourceTrigger=PropertyChanged}" Margin="2 0 0 0"/>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <ListBox ItemsSource="{Binding History.HistoryItems, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalContentAlignment="Stretch" Margin="0,0,0,39" Grid.ColumnSpan="2"
+                         ScrollViewer.VerticalScrollBarVisibility="Visible"
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                         ScrollViewer.CanContentScroll="False">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <history:WindowHistoryControl DataContext="{Binding}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Grid Height="39" VerticalAlignment="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button 
+                            Command="{Binding History.ClearItemsCommand, Mode=OneTime}"
+                            Content="Clear History" 
+                            BorderBrush="{DynamicResource ControlBrightDefaultBorderBrush}"
+                            BorderThickness="1 0 0 1"/>
+                    <Button 
+                            Command="{Binding History.ReopenLastWindowCommand, Mode=OneTime}"
+                            Content="Re-open Last Window" 
+                            BorderBrush="{DynamicResource ControlBrightDefaultBorderBrush}"
+                            BorderThickness="1 0 1 1" Grid.Column="1"/>
+                </Grid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

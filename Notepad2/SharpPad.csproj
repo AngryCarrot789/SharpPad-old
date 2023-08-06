@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4441374D-B286-4D17-8AB8-F906F01E4ECD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SharpPad</RootNamespace>
+    <AssemblyName>SharpPad</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <SuiteName>wat</SuiteName>
+    <ApplicationRevision>133</ApplicationRevision>
+    <ApplicationVersion>2.9.200.133</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>file.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debugging\</OutputPath>
+    <Optimize>false</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>SharpPad.App</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Applications\Controls\WindowPreviewControl.xaml.cs">
+      <DependentUpon>WindowPreviewControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\Controls\WindowPreviewControlViewModel.cs" />
+    <Compile Include="Applications\ThisApplication.cs" />
+    <Compile Include="Applications\WindowManager.cs" />
+    <Compile Include="Applications\WindowManagerView.xaml.cs">
+      <DependentUpon>WindowManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\HorizontalScrolling.cs" />
+    <Compile Include="AttachedProperties\ListBoxBehaviour.cs" />
+    <Compile Include="ByteAnalysis\ByteAnalyserTextWindow.xaml.cs">
+      <DependentUpon>ByteAnalyserTextWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ByteAnalysis\ByteAnalyserViewModel.cs" />
+    <Compile Include="ByteAnalysis\ByteAnalyserTextViewModel.cs" />
+    <Compile Include="ByteAnalysis\Character.cs" />
+    <Compile Include="ByteAnalysis\CharacterControl.xaml.cs">
+      <DependentUpon>CharacterControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CClipboard\ClipboardNotification.cs" />
+    <Compile Include="CClipboard\ClipboardWindow.xaml.cs">
+      <DependentUpon>ClipboardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CClipboard\CustomClipboard.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\FileExistsToBoolConverter.cs" />
+    <Compile Include="Converters\FileExtensionNameConverter.cs" />
+    <Compile Include="Converters\FileSizeFormatConverter.cs" />
+    <Compile Include="Converters\InvertBoolConverter.cs" />
+    <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\FileSizeToColourConverter.cs" />
+    <Compile Include="Converters\LeftPaneOpenedToImageSourceConverter.cs" />
+    <Compile Include="Converters\TopPaneOpenedToImageSourceConverter.cs" />
+    <Compile Include="Converters\TextChangedToUnsavedIndicatorConverter.cs" />
+    <Compile Include="Converters\TextToFontDecorationConverter.cs" />
+    <Compile Include="Editor\TheREditor.cs" />
+    <Compile Include="FileChangeWatcher\ApplicationFileWatcher.cs" />
+    <Compile Include="FileChangeWatcher\DocumentWatcher.cs" />
+    <Compile Include="FileExplorer\ExplorerHelper.cs" />
+    <Compile Include="Finding\TextFinding\FindSettings.cs" />
+    <Compile Include="Finding\NotepadItemFinding\FoundNotepadItemControl.xaml.cs">
+      <DependentUpon>FoundNotepadItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Finding\NotepadItemFinding\FoundNotepadItemViewModel.cs" />
+    <Compile Include="Finding\NotepadItemFinding\ItemSearchResultsViewMode.cs" />
+    <Compile Include="Finding\NotepadItemFinding\ItemSearchResultsWindow.xaml.cs">
+      <DependentUpon>ItemSearchResultsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="History\HistoryControl.xaml.cs">
+      <DependentUpon>HistoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="History\HistoryItemViewModel.cs" />
+    <Compile Include="Applications\History\WindowHistoryControl.xaml.cs">
+      <DependentUpon>WindowHistoryControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Applications\History\WindowHistoryControlViewModel.cs" />
+    <Compile Include="Applications\History\WindowHistoryViewModel.cs" />
+    <Compile Include="InformationStuff\InformationItemControl.xaml.cs">
+      <DependentUpon>InformationItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InformationStuff\InformationViewModel.cs" />
+    <Compile Include="Interfaces\IMainView.cs" />
+    <Compile Include="Interfaces\IView.cs" />
+    <Compile Include="Notepad\DragDropping\DragDropNameHelper.cs" />
+    <Compile Include="Notepad\DragDropping\DragDropFileWatchers.cs" />
+    <Compile Include="Notepad\NotepadItemViewModel.cs" />
+    <Compile Include="Notepad\TopNotepadListItem.xaml.cs">
+      <DependentUpon>TopNotepadListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleEditor\TheRTextEditor.cs" />
+    <Compile Include="SingleInstance\ApplicationMessage.cs" />
+    <Compile Include="SingleInstance\TheRInstance.cs" />
+    <Compile Include="Utilities\AsyncUtility.cs" />
+    <Compile Include="Utilities\FilePropertiesHelper.cs" />
+    <Compile Include="Notepad\FileProperties\FilePropertiesViewModel.cs" />
+    <Compile Include="Notepad\FileProperties\FilePropertiesWindow.xaml.cs">
+      <DependentUpon>FilePropertiesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Preferences\PreferencesG.cs" />
+    <Compile Include="Preferences\Views\PreferencesWindow.xaml.cs">
+      <DependentUpon>PreferencesWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleEditor\TextEditor.cs" />
+    <Compile Include="FileExplorer\BaseObject.cs" />
+    <Compile Include="FileExplorer\Enums\FileAttribute.cs" />
+    <Compile Include="FileExplorer\Enums\IconSize.cs" />
+    <Compile Include="FileExplorer\Enums\ItemState.cs" />
+    <Compile Include="FileExplorer\Enums\ItemType.cs" />
+    <Compile Include="FileExplorer\Enums\ShellAttribute.cs" />
+    <Compile Include="FileExplorer\FileManager.cs" />
+    <Compile Include="FileExplorer\FolderManager.cs" />
+    <Compile Include="FileExplorer\Interop.cs" />
+    <Compile Include="FileExplorer\ProperyNotifier.cs" />
+    <Compile Include="FileExplorer\ShellClasses\DummyFileSystemObjectInfo.cs" />
+    <Compile Include="FileExplorer\ShellClasses\FileSystemObjectInfo.cs" />
+    <Compile Include="FileExplorer\ShellManager.cs" />
+    <Compile Include="FileExplorer\Structs\ShellFileInfo.cs" />
+    <Compile Include="Finding\TextFinding\CharacterFinder.cs" />
+    <Compile Include="Finding\TextFinding\FindResult.cs" />
+    <Compile Include="InformationStuff\InformationModel.cs" />
+    <Compile Include="InformationStuff\InfoTypes.cs" />
+    <Compile Include="Notepad\DocumentViewModel.cs" />
+    <Compile Include="Notepad\FormatViewModel.cs" />
+    <Compile Include="Notepad\NotepadActions.cs" />
+    <Compile Include="Notepad\NotepadListItem.xaml.cs">
+      <DependentUpon>NotepadListItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RecyclingBin\FileOperationFlags.cs" />
+    <Compile Include="RecyclingBin\FileOperationType.cs" />
+    <Compile Include="RecyclingBin\RecycleBin.cs" />
+    <Compile Include="RecyclingBin\SHFILEOPSTRUCT.cs" />
+    <Compile Include="Themes\ColourfulDarkTheme.xaml.cs">
+      <DependentUpon>ColourfulDarkTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\ColourfulLightTheme.xaml.cs">
+      <DependentUpon>ColourfulLightTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\DarkTheme.xaml.cs">
+      <DependentUpon>DarkTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\LightTheme.xaml.cs">
+      <DependentUpon>LightTheme.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Themes\ThemesController.cs" />
+    <Compile Include="Utilities\AnimationFlag.cs" />
+    <Compile Include="Utilities\AnimationHelpers.cs" />
+    <Compile Include="Utilities\BaseViewModel.cs" />
+    <Compile Include="Utilities\Command.cs" />
+    <Compile Include="Utilities\CommandParam.cs" />
+    <Compile Include="InformationStuff\Information.cs" />
+    <Compile Include="Utilities\FileExtensionsHelper.cs" />
+    <Compile Include="Utilities\GlobalPreferences.cs" />
+    <Compile Include="Utilities\MouseLocationHelper.cs" />
+    <Compile Include="Utilities\StringHelper.cs" />
+    <Compile Include="Utilities\TextBoxLineNumbers.cs" />
+    <Compile Include="CClipboard\ClipboardViewModel.cs" />
+    <Compile Include="Finding\TextFinding\FindReplaceViewModel.cs" />
+    <Compile Include="History\HistoryViewModel.cs" />
+    <Compile Include="Applications\ApplicationViewModel.cs" />
+    <Compile Include="Preferences\Views\PreferencesViewModel.cs" />
+    <Compile Include="ViewModels\NotepadViewModel.cs" />
+    <Compile Include="ViewModels\TextEditorLinesViewModel.cs" />
+    <Compile Include="ViewModels\TextDocumentViewModel.cs" />
+    <Compile Include="ViewModels\RichNotepadViewModel.cs" />
+    <Compile Include="Views\HelpWindow.xaml.cs">
+      <DependentUpon>HelpWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\NewWinPrefs.cs" />
+    <Compile Include="Views\NotepadWindow.xaml.cs">
+      <DependentUpon>NotepadWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WordCompletion\WordCompletionControl.xaml.cs">
+      <DependentUpon>WordCompletionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WordCompletion\Words\WordItemControl.xaml.cs">
+      <DependentUpon>WordItemControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WordCompletion\WorldCompletionViewModel.cs" />
+    <Page Include="Applications\Controls\WindowPreviewControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Applications\WindowManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ByteAnalysis\ByteAnalyserTextWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ByteAnalysis\CharacterControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CClipboard\ClipboardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Finding\NotepadItemFinding\FoundNotepadItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Finding\NotepadItemFinding\ItemSearchResultsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="History\HistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Applications\History\WindowHistoryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InformationStuff\InformationItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notepad\FileProperties\FilePropertiesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Notepad\TopNotepadListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Preferences\Views\PreferencesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SimpleEditor\TextEditorStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Notepad\NotepadListItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ColourfulDarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\ColourfulLightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\DarkTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\LightTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\HelpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotepadWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WordCompletion\WordCompletionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WordCompletion\Words\WordItemControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\closeAllFiles.png" />
+    <Resource Include="Resources\closeFile.png" />
+    <Resource Include="Resources\newFile.png" />
+    <Resource Include="Resources\openFile.png" />
+    <Resource Include="Resources\openInNewWindow.png" />
+    <Resource Include="Resources\saveFileAs.png" />
+    <Resource Include="Resources\saveFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\printIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\copy.png" />
+    <Resource Include="Resources\cut.png" />
+    <Resource Include="Resources\redo.png" />
+    <Resource Include="Resources\undo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\FileExplorerIcons\drive.png" />
+    <Resource Include="Resources\FileExplorerIcons\file.png" />
+    <Resource Include="Resources\FileExplorerIcons\folder-closed.png" />
+    <Resource Include="Resources\FileExplorerIcons\folder-open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\findReplace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\preferencesIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\previewWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\focusWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Shell32">
+      <Guid>{50A7E9B0-70EF-11D1-B75A-00A0C90564FE}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\openFolder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\saveAll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\binCan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\paste.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\topTabsOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\alertSaveFile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\closePane.png" />
+    <Resource Include="Resources\openPane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <FileAssociation Include=".txt">
+      <Visible>False</Visible>
+      <Description>A text document, openable in SharpPad</Description>
+      <Progid>SharpPad</Progid>
+      <DefaultIcon>notepadIcon.ico</DefaultIcon>
+    </FileAssociation>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\topTabsClose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\downIcon.png" />
+    <Resource Include="Resources\upIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\replaceAllIcon.png" />
+    <Resource Include="Resources\replaceIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\matchCaseIcon.png" />
+    <Resource Include="Resources\matchWholeWordIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\oldSharpPadIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sharpPadIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\sharpPadIcon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
